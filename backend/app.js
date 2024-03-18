@@ -18,9 +18,15 @@ const offerRouter = require("./routes/offers");
 app.use(`${api}/offers`, offerRouter);
 const categoryRouter = require("./routes/category");
 app.use(`${api}/category`, categoryRouter);
+const userRouter = require("./routes/user");
+app.use(`${api}/user`, userRouter);
+const courseRouter = require("./routes/course");
+app.use(`${api}/course`, courseRouter);
 
 const Offer = require("./model/offers");
 const Category = require("./model/category");
+const User = require("./model/user");
+const Course = require("./model/course");
 
 mongoose
   .connect(process.env.CONNECTION_STRING, {
