@@ -3,7 +3,7 @@ const app = express();
 const bodyparser = require("body-parser");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const authJwt = require("./middleware/jwt");
+const authJwt = require("./middleware/jwt").authJwt;
 const errorhandler = require("./middleware/error_handler");
 const cors = require("cors");
 
@@ -37,8 +37,8 @@ const Course = require("./model/course");
 
 mongoose
   .connect(process.env.CONNECTION_STRING, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
     dbName: "swappdb",
   })
   .then(() => {

@@ -5,9 +5,13 @@ const { User } = require("../model/user");
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+const checkAuth = require("../middleware/jwt").checkAuth;
 
-router.get(`/`, async (req, res) => {
-  const offerList = await Offer.find();
+// return list of offer where course offerer is not the user
+router.get(`/`, checkAuth, async (req, res) => {
+  const offerList = await Offer.find({
+    CourseOfferer: { $ne: req.UserData.email },
+  });
 
   if (!offerList) {
     res.status(500).json({ success: false });
@@ -26,7 +30,7 @@ router.get(`/:id`, async (req, res) => {
   res.status(200).send(offer);
 });
 
-router.post(`/`, async (req, res) => {
+router.post(`/`, checkAuth, async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(400).send("Invalid User");
   const courseoffer = await Course.findOne({ code: req.body.Courseoffercode });
@@ -66,6 +70,11 @@ router.put("/:id", async (req, res) => {
   });
   if (!coursedemand) return res.status(400).send("Invalid demand Course");
 
+  const oldoff = await Offer.findById(req.params.id);
+  if (oldoff.CourseOfferer !== req.body.email) {
+    return res.status(401).send("Unauthorized");
+  }
+
   const offer = await Offer.findByIdAndUpdate(
     req.params.id,
     {
@@ -83,7 +92,56 @@ router.put("/:id", async (req, res) => {
   res.send(offer);
 });
 
-router.delete("/:id", (req, res) => {
+// router.delete("/:id", (req, res) => {
+//   Offer.findByIdAndDelete(req.params.id)
+//     .then((offer) => {
+//       if (offer) {
+//         return res
+//           .status(200)
+//           .json({ success: true, message: "the offer is deleted!" });
+//       } else {
+//         return res
+//           .status(404)
+//           .json({ success: false, message: "offer not found!" });
+//       }
+//     })
+//     .catch((err) => {
+//       return res.status(500).json({ success: false, error: err });
+//     });
+// });
+
+router.get(`/get/count`, async (req, res) => {
+  const offerCount = await Offer.countDocuments((count) => count);
+
+  if (!offerCount) {
+    res.status(500).json({ success: false });
+  }
+  res.send({
+    offerCount: offerCount,
+  });
+});
+
+// User specific routes
+// See my offers
+router.get(`/myoffers`, checkAuth, async (req, res) => {
+  // const user = await User.findOne({
+  //   email: req.body.email,
+  // });
+
+  const offerList = await Offer.find({ CourseOfferer: req.UserData.email });
+  if (!offerList) {
+    res.status(500).json({ success: false });
+  }
+  res.send(offerList);
+});
+
+router.delete("/:id", checkAuth, (req, res) => {
+  const offer = Offer.findById(req.params.id);
+
+  if (offer.CourseOfferer !== req.UserData.email) {
+    return res.status(401).send("Unauthorized");
+  }
+
   Offer.findByIdAndDelete(req.params.id)
     .then((offer) => {
       if (offer) {
@@ -99,17 +157,6 @@ router.delete("/:id", (req, res) => {
     .catch((err) => {
       return res.status(500).json({ success: false, error: err });
     });
-});
-
-router.get(`/get/count`, async (req, res) => {
-  const offerCount = await Offer.countDocuments((count) => count);
-
-  if (!offerCount) {
-    res.status(500).json({ success: false });
-  }
-  res.send({
-    offerCount: offerCount,
-  });
 });
 
 module.exports = router;

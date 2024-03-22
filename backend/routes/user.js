@@ -3,6 +3,8 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { check } = require("prettier");
+const checkAuth = require("../middleware/jwt").checkAuth;
 
 // user list
 router.get(`/`, async (req, res) => {
@@ -69,7 +71,10 @@ router.post("/login", async (req, res) => {
 //   res.status(200).send(category);
 // });
 
-router.post(`/`, async (req, res) => {
+router.post(`/`, checkAuth, async (req, res) => {
+  if (req.UserData.isAdmin === false) {
+    return res.status(401).send("You are not authorized to create a user");
+  }
   let user = new User({
     name: req.body.name,
     email: req.body.email,
@@ -84,7 +89,7 @@ router.post(`/`, async (req, res) => {
 
   user = await user.save();
 
-  if (!user) return res.status(404).send("the category cannot be created!");
+  if (!user) return res.status(404).send("the user cannot be created!");
 
   res.send(user);
 });
@@ -101,6 +106,15 @@ router.post(`/register`, async (req, res) => {
     DP: req.body.DP,
     phone: req.body.phone,
   });
+
+  // check if email exists already:
+  if (
+    user.email === User.findOne({ email: req }).email ||
+    user.universityemail ===
+      User.findOne({ universityemail: req }).universityemail
+  ) {
+    return res.status(400).send("Email already exists");
+  }
 
   user = await user.save();
 
