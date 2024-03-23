@@ -45,7 +45,6 @@ router.post(`/`, checkAuth, async (req, res) => {
     CourseOffer: courseoffer._id,
     CourseDemand: coursedemand._id,
     OfferDate: req.body.OfferDate,
-    Offerexpiry: req.body.Offerexpiry,
   });
 
   offer = await offer.save();
@@ -82,7 +81,6 @@ router.put("/:id", async (req, res) => {
       CourseOffer: courseoffer._id,
       CourseDemand: coursedemand._id,
       OfferDate: req.body.OfferDate,
-      Offerexpiry: req.body.Offerexpiry,
     },
     { new: true },
   );

@@ -37,8 +37,8 @@ const Course = require("./model/course");
 
 mongoose
   .connect(process.env.CONNECTION_STRING, {
-    // useNewUrlParser: true,
-    // useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
     dbName: "swappdb",
   })
   .then(() => {
