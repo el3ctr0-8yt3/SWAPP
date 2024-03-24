@@ -19,6 +19,17 @@ router.get(`/`, checkAuth, async (req, res) => {
   res.send(offerList);
 });
 
+router.get(`/myoffers`, checkAuth, async (req, res) => {
+  const offerList = await Offer.find({
+    CourseOfferer: req.UserData.email,
+  });
+
+  if (!offerList) {
+    res.status(500).json({ success: false });
+  }
+  res.send(offerList);
+});
+
 router.get(`/:id`, async (req, res) => {
   const offer = await Offer.findById(req.params.id);
 
@@ -121,17 +132,13 @@ router.get(`/get/count`, async (req, res) => {
 
 // User specific routes
 // See my offers
-router.get(`/myoffers`, checkAuth, async (req, res) => {
-  // const user = await User.findOne({
-  //   email: req.body.email,
-  // });
-
-  const offerList = await Offer.find({ CourseOfferer: req.UserData.email });
-  if (!offerList) {
-    res.status(500).json({ success: false });
-  }
-  res.send(offerList);
-});
+// router.get(`/hello/`, checkAuth, async (req, res) => {
+//   const offerList = await Offer.find();
+//   if (!offerList) {
+//     res.status(500).json({ success: false });
+//   }
+//   res.send(offerList);
+// });
 
 router.delete("/:id", checkAuth, (req, res) => {
   const offer = Offer.findById(req.params.id);

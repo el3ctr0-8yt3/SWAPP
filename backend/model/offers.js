@@ -23,13 +23,15 @@ const offerSchema = new mongoose.Schema({
   OfferDate: {
     type: Date,
     default: Date.now,
-    expires: 60 * 60 * 24 * 7, // 7 days
+    expires: "1d", // 7 days
   },
   // Offerexpiry: {
   //   type: Date,
   //   default: Date.now,
   // },
 });
+
+// offerSchema.index({ OfferDate: 1 }, { expireAfterSeconds: 604800 });
 
 exports.Offer = mongoose.model("Offer", offerSchema);
 exports.offerSchema = offerSchema;
