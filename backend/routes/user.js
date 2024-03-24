@@ -95,17 +95,21 @@ router.post(`/`, checkAuth, async (req, res) => {
 });
 
 router.post(`/register`, async (req, res) => {
-  let user = new User({
-    name: req.body.name,
-    email: req.body.email,
-    universityemail: req.body.universityemail,
-    passwordHash: bcrypt.hashSync(req.body.password, 10), // "$2$16$secretsaltthisisnowpleasegenerate",
-    isAdmin: req.body.isAdmin,
-    batch: req.body.batch,
-    Major: req.body.Major,
-    DP: req.body.DP,
-    phone: req.body.phone,
-  });
+  try {
+    let user = new User({
+      name: req.body.name,
+      email: req.body.email,
+      universityemail: req.body.universityemail,
+      passwordHash: bcrypt.hashSync(req.body.password, 10), // "$2$16$secretsaltthisisnowpleasegenerate",
+      isAdmin: req.body.isAdmin,
+      batch: req.body.batch,
+      Major: req.body.Major,
+      DP: req.body.DP,
+      phone: req.body.phone,
+    });
+  } catch (err) {
+    return res.status(400).send("Invalid data");
+  }
 
   // check if email exists already:
   if (
