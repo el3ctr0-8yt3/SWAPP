@@ -10,7 +10,7 @@ const checkAuth = require("../middleware/jwt").checkAuth;
 // return list of offer where course offerer is not the user
 router.get(`/`, checkAuth, async (req, res) => {
   const offerList = await Offer.find({
-    CourseOfferer: { $ne: req.UserData.email },
+    CourseOfferer: { $ne: req.UserData.userId },
   });
 
   if (!offerList) {
