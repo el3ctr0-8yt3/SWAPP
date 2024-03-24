@@ -11,7 +11,7 @@ const checkAuth = require("../middleware/jwt").checkAuth;
 // return list of offer where course offerer is not the user
 router.get(`/`, checkAuth, async (req, res) => {
   const offerList = await Offer.find({
-    CourseOfferer: { $ne: req.UserData.email },
+    CourseOfferer: { $ne: req.UserData.userId },
   })
     .populate("CourseOfferer", "name email")
     .populate("CourseOffer")
@@ -42,8 +42,9 @@ router.get(`/`, checkAuth, async (req, res) => {
 });
 
 router.get(`/myoffers`, checkAuth, async (req, res) => {
+  // console.log(req.UserData);
   const offerList = await Offer.find({
-    CourseOfferer: req.UserData.email,
+    CourseOfferer: req.UserData.userId,
   })
     .populate("CourseOffer")
     .populate("CourseDemand");
@@ -70,7 +71,10 @@ router.get(`/myoffers`, checkAuth, async (req, res) => {
 });
 
 router.get(`/:id`, async (req, res) => {
-  const offer = await Offer.findById(req.params.id);
+  const offer = await Offer.findById(req.params.id)
+    .populate("CourseOfferer")
+    .populate("CourseOffer")
+    .populate("CourseDemand");
 
   if (!offer) {
     res
@@ -101,7 +105,12 @@ router.post(`/`, checkAuth, async (req, res) => {
 
   if (!offer) return res.status(500).send("the offer cannot be created!");
 
-  res.send(offer);
+  res.send({
+    CourseOfferer: user.name,
+    CourseOffer: courseoffer.name,
+    CourseDemand: coursedemand.name,
+    OfferDate: offer.OfferDate,
+  });
 });
 
 router.put("/:id", async (req, res) => {
