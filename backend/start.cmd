@@ -1,1 +1,1 @@
-node app.js
+cmd /k node app.js
