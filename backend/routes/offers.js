@@ -5,29 +5,68 @@ const { User } = require("../model/user");
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+const { format } = require("prettier");
 const checkAuth = require("../middleware/jwt").checkAuth;
 
 // return list of offer where course offerer is not the user
 router.get(`/`, checkAuth, async (req, res) => {
   const offerList = await Offer.find({
     CourseOfferer: { $ne: req.UserData.email },
-  });
+  })
+    .populate("CourseOfferer", "name email")
+    .populate("CourseOffer")
+    .populate("CourseDemand");
 
   if (!offerList) {
     res.status(500).json({ success: false });
   }
-  res.send(offerList);
+
+  const formattedoffers = offerList.map((offer) => {
+    return {
+      CourseOfferer: offer.CourseOfferer.name,
+      Offereremail: offer.CourseOfferer.email,
+      CourseOfferName: offer.CourseOffer.name,
+      CourseOfferCode: offer.CourseOffer.code,
+      CourseOfferSection: offer.CourseOffer.section,
+      CourseOfferTimes: offer.CourseOffer.times,
+      CourseOfferDays: offer.CourseOffer.days,
+      CourseDemandName: offer.CourseDemand.name,
+      CourseDemandCode: offer.CourseDemand.code,
+      CourseDemandSection: offer.CourseDemand.section,
+      CourseDemandTimes: offer.CourseDemand.times,
+      CourseDemandDays: offer.CourseDemand.days,
+      OfferDate: offer.OfferDate,
+    };
+  });
+  res.send(formattedoffers);
 });
 
 router.get(`/myoffers`, checkAuth, async (req, res) => {
   const offerList = await Offer.find({
     CourseOfferer: req.UserData.email,
-  });
+  })
+    .populate("CourseOffer")
+    .populate("CourseDemand");
 
   if (!offerList) {
     res.status(500).json({ success: false });
   }
-  res.send(offerList);
+  const formattedoffers = offerList.map((offer) => {
+    return {
+      CourseOfferName: offer.CourseOffer.name,
+      CourseOfferCode: offer.CourseOffer.code,
+      CourseOfferSection: offer.CourseOffer.section,
+      CourseOfferTimes: offer.CourseOffer.times,
+      CourseOfferDays: offer.CourseOffer.days,
+      CourseDemandName: offer.CourseDemand.name,
+      CourseDemandCode: offer.CourseDemand.code,
+      CourseDemandSection: offer.CourseDemand.section,
+      CourseDemandTimes: offer.CourseDemand.times,
+      CourseDemandDays: offer.CourseDemand.days,
+      OfferDate: offer.OfferDate,
+    };
+  });
+  res.send(formattedoffers);
 });
 
 router.get(`/:id`, async (req, res) => {
