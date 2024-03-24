@@ -1,0 +1,49 @@
+.purplebtn{
+display: flex;
+width: 21.625rem;
+padding: 0.875rem 4.5625rem;
+justify-content: center;
+align-items: center;
+gap: 0.625rem;
+border-radius: 0.625rem;
+border: 0.658px solid #8E8383;
+background: #81358D;
+color: #FFF;
+font-family: "Futura Md BT";
+font-size: 1.3rem;
+font-weight: 500;
+}
+.purplebtn:hover{
+    opacity: 90%;
+}
+.purplebtn:active{
+    scale:95%;
+    opacity:100%;
+}
+.txtbox{
+display: inline-flex;
+padding: 1rem;
+justify-content: center;
+align-items: flex-end;
+border-radius: 0.34294rem;
+border: 2px solid #000;
+margin-bottom: 2rem;
+}
+h1{
+color: #000;
+font-family: "Futura Md BT";
+font-size: 2.5rem;   
+font-weight: 400;
+}
+.box1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.box2{
+    width: 320px;
+    border-radius: 0.75rem;
+    background-color: rgba(17, 24, 39, 1);
+    padding: 2rem;
+    color: rgba(243, 244, 246, 1);
+}

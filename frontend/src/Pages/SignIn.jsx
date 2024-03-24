@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { apiUrl } from "../config";
+import './app.css';
 
 const SignIn = () => {
     const signInUser = async (email, password) => {
@@ -41,15 +42,18 @@ const SignIn = () => {
     };
 
     return (
-        <div>
-            <h1>Sign In</h1>
+        <div class="box1">
+            <h1>Hi, Welcome Back !</h1>
+            <div class="box1">
             <form>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <button type="submit" onClick={handleSignIn}>
-                    Sign In
+                <input class="txtbox" type="email" placeholder="Email" />
+                <input class="txtbox" type="password" placeholder="Password" />
+                <button class="purplebtn" type="submit" onClick={handleSignIn}>
+                    SIGN IN
                 </button>
+                
             </form>
+            </div>
         </div>
     );
 };
