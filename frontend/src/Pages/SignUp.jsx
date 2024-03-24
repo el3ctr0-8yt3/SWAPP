@@ -1,5 +1,7 @@
 import { apiUrl } from "../config";
+import { Link } from "react-router-dom";
 import './app.css';
+import back from '../Components/Vector.png'
 const SignUp = () => {
     const buttonClick = async (e) => {
         e.preventDefault();
@@ -40,8 +42,13 @@ const SignUp = () => {
         }
     };
     return (
-        <div>
-            <h1>Sign Up</h1>
+        <div class="box1">
+        <div class="box2">
+        <Link to="/"><img src={back}></img></Link>
+       
+            <h1>Create Account</h1>
+            <h2 >Create an account and start swapping !</h2>
+            
             <form>
                 <input
                     class="txtbox"
@@ -111,9 +118,11 @@ const SignUp = () => {
                 </select>
                 <br />
                 <button class="purplebtn" type="submit" onClick={buttonClick}>
-                    Sign Up
+                    Create Account !
                 </button>
+                <p>Already have an account? <Link to="/signin">Log-in</Link>  </p>
             </form>
+        </div>
         </div>
     );
 };

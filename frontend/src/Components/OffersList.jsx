@@ -1,4 +1,5 @@
 import React from "react";
+import '../Pages/app.css';
 
 const OffersList = ({ offers }) => {
     if (offers.length === 0) {
@@ -7,11 +8,12 @@ const OffersList = ({ offers }) => {
     return (
         <div>
             {offers.map((offer) => (
-                <div key={offer._id}>
+                <div class='offer' key={offer._id}>
                     <p>
                         Offer ID: {offer._id} <br />
                         Course Offered: {offer.CourseOffer} <br />
                         Course Demanded: {offer.CourseDemand} <br />
+                        
                     </p>
                 </div>
             ))}

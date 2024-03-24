@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { apiUrl } from "../config";
+import { Link } from "react-router-dom";
+import back from '../Components/Vector.png'
 import './app.css';
-
+import hand from '../Components/noto_waving-hand.png'
 const SignIn = () => {
     const signInUser = async (email, password) => {
         const data = { email, password };
@@ -44,15 +46,20 @@ const SignIn = () => {
     return (
         <div class="box1">
         <div class="box2">
-            <h1>Hi, Welcome Back !</h1>
+        <Link to="/"><img src={back}></img></Link>
+            <h1>Hi, Welcome Back ! <img src={hand}/></h1>
             
             <form>
-                <input class="txtbox" type="email" placeholder="Email" />
-                <input class="txtbox" type="password" placeholder="Password" />
+            <div class='form1'>
+                <h2>Email</h2>
+                <input class="txtbox" type="email" placeholder="Type Email" />
+                <h2>Password</h2>
+                <input class="txtbox" type="password" placeholder="Type Password" />
                 <button class="purplebtn" type="submit" onClick={handleSignIn}>
-                    SIGN IN
+                    LOGIN
                 </button>
-                
+                <p>Don't have an account? <Link to="/signup">Sign-up</Link>  </p>
+                </div>
             </form>
             
         </div>
