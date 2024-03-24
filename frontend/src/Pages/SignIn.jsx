@@ -43,8 +43,9 @@ const SignIn = () => {
 
     return (
         <div class="box1">
+        <div class="box2">
             <h1>Hi, Welcome Back !</h1>
-            <div class="box1">
+            
             <form>
                 <input class="txtbox" type="email" placeholder="Email" />
                 <input class="txtbox" type="password" placeholder="Password" />
@@ -53,7 +54,8 @@ const SignIn = () => {
                 </button>
                 
             </form>
-            </div>
+            
+        </div>
         </div>
     );
 };

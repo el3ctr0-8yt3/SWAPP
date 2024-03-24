@@ -1,5 +1,5 @@
 import { apiUrl } from "../config";
-
+import './app.css';
 const SignUp = () => {
     const buttonClick = async (e) => {
         e.preventDefault();
@@ -44,6 +44,7 @@ const SignUp = () => {
             <h1>Sign Up</h1>
             <form>
                 <input
+                    class="txtbox"
                     type="text"
                     placeholder="Enter Your Full Name"
                     id="name"
@@ -51,6 +52,7 @@ const SignUp = () => {
                 />
                 <br />
                 <input
+                class="txtbox"
                     type="email"
                     placeholder="Enter Your Personal Email"
                     id="email"
@@ -58,6 +60,7 @@ const SignUp = () => {
                 />
                 <br />
                 <input
+                class="txtbox"
                     type="email"
                     placeholder="Enter Your University Email"
                     id="universityemail"
@@ -65,6 +68,7 @@ const SignUp = () => {
                 />
                 <br />
                 <input
+                class="txtbox"
                     type="password"
                     placeholder="Create a Secure Password"
                     id="password"
@@ -72,6 +76,7 @@ const SignUp = () => {
                 />
                 <br />
                 <input
+                class="txtbox"
                     type="number"
                     placeholder="Enter Your Phone Number"
                     id="phone"
@@ -79,13 +84,14 @@ const SignUp = () => {
                 />
                 <br />
                 <input
+                class="txtbox"
                     type="number"
                     placeholder="Enter Your Batch Year (e.g. 2020)"
                     id="batch"
                     required={true}
                 />
                 <br />
-                <select id="Major">
+                <select id="Major" class="txtbox">
                     <option value="Computer Science">Computer Science</option>
                     <option value="Computer Engineering">
                         Computer Engineering
@@ -104,7 +110,7 @@ const SignUp = () => {
                     </option>
                 </select>
                 <br />
-                <button type="submit" onClick={buttonClick}>
+                <button class="purplebtn" type="submit" onClick={buttonClick}>
                     Sign Up
                 </button>
             </form>
