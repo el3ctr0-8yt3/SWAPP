@@ -54,6 +54,7 @@ router.get(`/myoffers`, checkAuth, async (req, res) => {
   }
   const formattedoffers = offerList.map((offer) => {
     return {
+      OfferId : offer._id,
       CourseOfferName: offer.CourseOffer.name,
       CourseOfferCode: offer.CourseOffer.code,
       CourseOfferSection: offer.CourseOffer.section,
