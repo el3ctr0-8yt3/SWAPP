@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { apiUrl } from "../config";
 import { Link } from "react-router-dom";
-import back from '../Components/Vector.png';
+import back from "../Components/Vector.png";
 
 const CreateOffer = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -74,51 +74,60 @@ const CreateOffer = () => {
 
     return (
         <div class="box1">
-        <div class="box2">
-        <Link to="/dashboard"><img src={back}></img></Link>
-            <h1>Create Offer</h1>
-            <div>
-                {isAuthenticated ? (
-                    <>
-                        
-                        <br />
-                        <form>
-                            <span><h2>Want Course:</h2></span>
-                            <select class='txtbox'id="coursedemandcode">
-                                {course.map((course) => (
-                                    <option
-                                        key={course._id}
-                                        value={course.code}
-                                    >
-                                        {course.code}
-                                    </option>
-                                ))}
-                            </select >
+            <div class="box2">
+                <Link to="/dashboard">
+                    <img src={back}></img>
+                </Link>
+                <h1>Create Offer</h1>
+                <div>
+                    {isAuthenticated ? (
+                        <>
                             <br />
-                            <br />
-                            <span><h2>Offering Course:</h2></span>
-                            <select class='txtbox'id="courseoffercode">
-                                {course.map((course) => (
-                                    <option
-                                        key={course._id}
-                                        value={course.code}
-                                    >
-                                        {course.code}
-                                    </option>
-                                ))}
-                            </select>
-                            <br />
-                            <br />
-                            <button class='purplebtn'type="submit" onClick={createOfferHandler}>
-                                Create Offer !
-                            </button>
-                        </form>
-                    </>
-                ) : (
-                    <h2>Please Log-in !</h2>
-                )}
+                            <form>
+                                <span>
+                                    <h2>Want Course:</h2>
+                                </span>
+                                <select class="txtbox" id="coursedemandcode">
+                                    {course.map((course) => (
+                                        <option
+                                            key={course._id}
+                                            value={course.code}
+                                        >
+                                            {course.code + " - " + course.name}
+                                        </option>
+                                    ))}
+                                </select>
+                                <br />
+                                <br />
+                                <span>
+                                    <h2>Offering Course:</h2>
+                                </span>
+                                <select class="txtbox" id="courseoffercode">
+                                    {course.map((course) => (
+                                        <option
+                                            key={course._id}
+                                            value={course.code}
+                                        >
+                                            {course.code + " - " + course.name}
+                                        </option>
+                                    ))}
+                                </select>
+                                <br />
+                                <br />
+                                <button
+                                    class="purplebtn"
+                                    type="submit"
+                                    onClick={createOfferHandler}
+                                >
+                                    Create Offer !
+                                </button>
+                            </form>
+                        </>
+                    ) : (
+                        <h2>Please Log-in !</h2>
+                    )}
+                </div>
             </div>
-        </div>
         </div>
     );
 };

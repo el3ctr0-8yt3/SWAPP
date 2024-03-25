@@ -1,20 +1,36 @@
 import React from "react";
-import '../Pages/app.css';
+import "../Pages/app.css";
 
 const OffersList = ({ offers }) => {
     if (offers.length === 0) {
         return <p>No offers available</p>;
     }
     return (
-        <div>
+        <div
+            style={{
+                maxHeight: "350px",
+                overflowY: "scroll",
+            }}
+        >
             {offers.map((offer) => (
-                <div class='offer' key={offer._id}>
-                    <p>
-                        Offer ID: {offer._id} <br />
-                        Course Offered: {offer.CourseOffer} <br />
-                        Course Demanded: {offer.CourseDemand} <br />
-                        
-                    </p>
+                <div className="offer">
+                    {offer.CourseOfferer ? (
+                        <>
+                            <b>Offer By:</b> {offer.CourseOfferer} <br />
+                        </>
+                    ) : (
+                        <></>
+                    )}
+                    <b>Offering Course:</b> {offer.CourseOfferCode}
+                    &nbsp;-&nbsp;
+                    {offer.CourseOfferName} <br />
+                    -- Section: {offer.CourseOfferSection} <br />
+                    -- Timings: {offer.CourseOfferTimes} <br />
+                    <b>Demand Course:</b> {offer.CourseDemandCode}
+                    &nbsp;-&nbsp;
+                    {offer.CourseDemandName} <br />
+                    -- Section: {offer.CourseDemandSection} <br />
+                    -- Timings: {offer.CourseDemandTimes} <br />
                 </div>
             ))}
         </div>

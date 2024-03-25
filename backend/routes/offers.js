@@ -11,7 +11,7 @@ const checkAuth = require("../middleware/jwt").checkAuth;
 // return list of offer where course offerer is not the user
 router.get(`/`, checkAuth, async (req, res) => {
   const offerList = await Offer.find({
-    CourseOfferer: { $ne: req.UserData.email },
+    CourseOfferer: { $ne: req.UserData.userId },
   })
     .populate("CourseOfferer", "name email")
     .populate("CourseOffer")
@@ -43,7 +43,7 @@ router.get(`/`, checkAuth, async (req, res) => {
 
 router.get(`/myoffers`, checkAuth, async (req, res) => {
   const offerList = await Offer.find({
-    CourseOfferer: req.UserData.email,
+    CourseOfferer: req.UserData.userId,
   })
     .populate("CourseOffer")
     .populate("CourseDemand");
@@ -182,7 +182,7 @@ router.get(`/get/count`, async (req, res) => {
 router.delete("/:id", checkAuth, (req, res) => {
   const offer = Offer.findById(req.params.id);
 
-  if (offer.CourseOfferer !== req.UserData.email) {
+  if (offer.CourseOfferer !== req.UserData.userId) {
     return res.status(401).send("Unauthorized");
   }
 
