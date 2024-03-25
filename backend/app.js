@@ -30,6 +30,9 @@ app.use(`${api}/user`, userRouter);
 const courseRouter = require("./routes/course");
 app.use(`${api}/course`, courseRouter);
 
+const otpRouter = require("./routes/otp");
+app.use(`${api}/otp`, otpRouter);
+
 const Offer = require("./model/offers");
 const Category = require("./model/category");
 const User = require("./model/user");

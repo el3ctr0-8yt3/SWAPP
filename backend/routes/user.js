@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { check } = require("prettier");
 const checkAuth = require("../middleware/jwt").checkAuth;
+const OTP = require("../model/otp");
 
 // user list
 router.get(`/`, async (req, res) => {
@@ -95,12 +96,35 @@ router.post(`/`, checkAuth, async (req, res) => {
 });
 
 router.post(`/register`, async (req, res) => {
+  // raise error if email doesnot end with '@st.habib.edu.pk'
+  if (!req.body.email.endsWith("@st.habib.edu.pk")) {
+    return res.status(400).json({
+      success: false,
+      message: "The email is not valid. Please enter a valid Habootar email.",
+    });
+  }
+
+  // check if email exists already:
+  let exuser = await User.findOne({ email: req.body.email });
+  if (exuser) {
+    return res.status(400).send("Email already exists");
+  }
+
+  const response = await OTP.find({ email: req.body.email })
+    .sort({ createdAt: -1 })
+    .limit(1);
+  if (response.length === 0 || req.body.otp !== response[0].otp) {
+    return res.status(400).json({
+      success: false,
+      message: "The OTP is not valid",
+    });
+  }
+
   let user;
   try {
     user = new User({
       name: req.body.name,
       email: req.body.email,
-      universityemail: req.body.universityemail,
       passwordHash: bcrypt.hashSync(req.body.password, 10), // "$2$16$secretsaltthisisnowpleasegenerate",
       isAdmin: req.body.isAdmin,
       batch: req.body.batch,
@@ -110,15 +134,6 @@ router.post(`/register`, async (req, res) => {
     });
   } catch (err) {
     return res.status(400).send("Invalid data");
-  }
-
-  // check if email exists already:
-  if (
-    user.email === User.findOne({ email: req }).email ||
-    user.universityemail ===
-      User.findOne({ universityemail: req }).universityemail
-  ) {
-    return res.status(400).send("Email already exists");
   }
 
   user = await user.save();

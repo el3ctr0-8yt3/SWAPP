@@ -11,6 +11,7 @@ function authJwt() {
     path: [
       `${process.env.API_URL}/user/login`,
       `${process.env.API_URL}/user/register`,
+      `${process.env.API_URL}/otp`,
     ],
   });
 }

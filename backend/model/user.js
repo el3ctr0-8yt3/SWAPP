@@ -10,11 +10,6 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  universityemail: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   passwordHash: {
     type: String,
     required: true,
