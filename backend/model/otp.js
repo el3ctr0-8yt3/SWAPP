@@ -22,7 +22,7 @@ async function sendVerificationEmail(email, otp) {
     const mailResponse = await mailSender(
       email,
       "Account Verification | SWAPP",
-      `<h1>Account Confirmation</h1>
+      `<h2>Verify your account</h2>
        <h4> Welcome to SWAPP! </h4>
        <p>Here is your OTP code: ${otp}</p>
        <p>Use this OTP to verify your SWAPP account. Note that this OTP will expire in 5 minutes. </p>
