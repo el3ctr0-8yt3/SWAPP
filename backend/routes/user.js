@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const { check } = require("prettier");
 const checkAuth = require("../middleware/jwt").checkAuth;
 const OTP = require("../model/otp");
+const sendConfirmation = require("../utils/confirmationmail");
 
 // user list
 router.get(`/`, async (req, res) => {
@@ -141,24 +142,29 @@ router.post(`/register`, async (req, res) => {
   if (!user) return res.status(404).send("the user account cannot be created!");
 
   res.send(user);
+  sendConfirmation(user.email);
+
 });
 
-// router.delete("/:id", (req, res) => {
-//   Category.findByIdAndDelete(req.params.id)
-//     .then((category) => {
-//       if (category) {
-//         return res
-//           .status(200)
-//           .json({ success: true, message: "the category is deleted!" });
-//       } else {
-//         return res
-//           .status(404)
-//           .json({ success: false, message: "category not found!" });
-//       }
-//     })
-//     .catch((err) => {
-//       return res.status(400).json({ success: false, error: err });
-//     });
-// });
+// delete also needs to delete the offers associated with the user
+router.delete("/:id", (req, res) => {
+  User.findByIdAndDelete(req.params.id)
+    .then((user) => {
+      if (user) {
+        return res
+          .status(200)
+          .json({ success: true, message: "the category is deleted!" });
+      } else {
+        return res
+          .status(404)
+          .json({ success: false, message: "category not found!" });
+      }
+    })
+    .catch((err) => {
+      return res.status(400).json({ success: false, error: err });
+    });
+});
+
+
 
 module.exports = router;

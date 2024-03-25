@@ -25,7 +25,7 @@ async function sendVerificationEmail(email, otp) {
       `<h1>Account Confirmation</h1>
        <h4> Welcome to SWAPP! </h4>
        <p>Here is your OTP code: ${otp}</p>
-       <p>Use this OTP to verify your SWAPP account. Note that this OTP will expire in 5 minutes. Happy Swapping! :) </p>
+       <p>Use this OTP to verify your SWAPP account. Note that this OTP will expire in 5 minutes. </p>
        <p> If you did not request this OTP, please ignore this email. </p>
        <p> This is an automatically generated email. Please donot respond. </p>
        <p>Best, <br> Team SWAPP</p>`,
