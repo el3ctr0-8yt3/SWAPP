@@ -191,7 +191,7 @@ router.get(`/get/count`, async (req, res) => {
 router.delete("/:id", checkAuth, (req, res) => {
   const offer = Offer.findById(req.params.id);
 
-  if (offer.CourseOfferer !== req.UserData.email) {
+  if (offer.CourseOfferer !== req.UserData.userId) {
     return res.status(401).send("Unauthorized");
   }
 

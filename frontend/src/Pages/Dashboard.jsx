@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { apiUrl } from "../config";
 import { Link } from "react-router-dom";
+import back from '../Components/Vector.png';
 import OffersList from "../Components/OffersList";
 
 const Dashboard = () => {
@@ -68,26 +69,32 @@ const Dashboard = () => {
     };
 
     return (
-        <>
-            <h1>Dashboard</h1>
+        <div class="box1">
+        
+        <div class="box2">
+        <Link onClick={signout} to="/"><img src={back}></img></Link>
+        
+            <h1>Browse Offers</h1>
+            
             <div>
                 {isAuthenticated ? (
                     <>
-                        <h2>Welcome, {user.name}</h2>
-                        <button>
-                            <Link to="/createoffer">Create Offer</Link>
+                    <h2>Welcome, {user.name} !</h2>
+                    <button class='greenbtn'>
+                        <Link to="/createoffer">New Offer</Link>
                         </button>
-                        <button onClick={signout}>Sign Out</button>
+                        {/* <button onClick={signout}>Sign Out</button> */}
                         <h2>Offers List</h2>
                         <OffersList offers={offers} />
                         <h2>My Offers</h2>
                         <OffersList offers={myOffers} />
                     </>
                 ) : (
-                    <h2>You are not logged in</h2>
+                    <h2>Please Log-in !</h2>
                 )}
             </div>
-        </>
+        </div>
+        </div>
     );
 };
 

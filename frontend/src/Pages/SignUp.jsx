@@ -1,5 +1,7 @@
 import { apiUrl } from "../config";
-
+import { Link } from "react-router-dom";
+import './app.css';
+import back from '../Components/Vector.png'
 const SignUp = () => {
     const buttonClick = async (e) => {
         e.preventDefault();
@@ -40,10 +42,16 @@ const SignUp = () => {
         }
     };
     return (
-        <div>
-            <h1>Sign Up</h1>
+        <div class="box1">
+        <div class="box2">
+        <Link to="/"><img src={back}></img></Link>
+       
+            <h1>Create Account</h1>
+            <h2 >Create an account and start swapping !</h2>
+            
             <form>
                 <input
+                    class="txtbox"
                     type="text"
                     placeholder="Enter Your Full Name"
                     id="name"
@@ -51,6 +59,7 @@ const SignUp = () => {
                 />
                 <br />
                 <input
+                class="txtbox"
                     type="email"
                     placeholder="Enter Your Personal Email"
                     id="email"
@@ -58,6 +67,7 @@ const SignUp = () => {
                 />
                 <br />
                 <input
+                class="txtbox"
                     type="email"
                     placeholder="Enter Your University Email"
                     id="universityemail"
@@ -65,6 +75,7 @@ const SignUp = () => {
                 />
                 <br />
                 <input
+                class="txtbox"
                     type="password"
                     placeholder="Create a Secure Password"
                     id="password"
@@ -72,6 +83,7 @@ const SignUp = () => {
                 />
                 <br />
                 <input
+                class="txtbox"
                     type="number"
                     placeholder="Enter Your Phone Number"
                     id="phone"
@@ -79,13 +91,14 @@ const SignUp = () => {
                 />
                 <br />
                 <input
+                class="txtbox"
                     type="number"
                     placeholder="Enter Your Batch Year (e.g. 2020)"
                     id="batch"
                     required={true}
                 />
                 <br />
-                <select id="Major">
+                <select id="Major" class="txtbox">
                     <option value="Computer Science">Computer Science</option>
                     <option value="Computer Engineering">
                         Computer Engineering
@@ -104,10 +117,12 @@ const SignUp = () => {
                     </option>
                 </select>
                 <br />
-                <button type="submit" onClick={buttonClick}>
-                    Sign Up
+                <button class="purplebtn" type="submit" onClick={buttonClick}>
+                    Create Account !
                 </button>
+                <p>Already have an account? <Link to="/signin">Log-in</Link>  </p>
             </form>
+        </div>
         </div>
     );
 };
