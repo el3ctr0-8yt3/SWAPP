@@ -23,7 +23,7 @@ const offerSchema = new mongoose.Schema({
   OfferDate: {
     type: Date,
     default: Date.now,
-    expires: "1d", // 7 days
+    expires: "7d", // 7 days
   },
   // Offerexpiry: {
   //   type: Date,

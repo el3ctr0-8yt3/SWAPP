@@ -1,6 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans");
+
 body {
     width: 100%;
     height: 100%;
+    overflow-x: hidden;
     --s: 100px; /* control the size */
     --c1: #ff8afc;
     --c2: #1b1b3a;
@@ -27,20 +30,20 @@ body {
 }
 h1 {
     color: #000;
-    font-family: "Futura Md BT";
+    font-family: "Josefin Sans";
     font-size: 2.5rem;
     font-weight: 600;
     margin-bottom: 1%;
 }
 h2 {
     color: #000;
-    font-family: "Futura Md BT";
+    font-family: "Josefin Sans";
     font-size: 1.5rem;
     font-weight: 200;
 }
 p {
     color: #000;
-    font-family: "Futura Md BT";
+    font-family: "Josefin Sans";
     font-size: 1rem;
     font-weight: 100;
 }
@@ -55,7 +58,7 @@ p {
     border: 0.658px solid #8e8383;
     background: #81358d;
     color: #fff;
-    font-family: "Futura Md BT";
+    font-family: "Josefin Sans";
     font-size: 1.3rem;
     font-weight: 200;
 }
@@ -71,7 +74,7 @@ p {
     border: 0.658px solid #8e8383;
     background: #18a800;
     color: #fff;
-    font-family: "Futura Md Bt";
+    font-family: "Josefin Sans";
     font-size: 1rem;
     font-weight: 100;
 }
@@ -93,10 +96,23 @@ p {
     transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     box-shadow: 0px 0px 20px -18px;
     margin-bottom: 1rem;
+    appearance: textfield;
 }
 .txtbox:hover {
     border: 1.5px solid rgb(97, 97, 97);
     box-shadow: 0px 0px 20px -17px;
+}
+.otp {
+    width: 200px !important;
+}
+
+.otp-btn {
+    width: 90px;
+    margin-left: 10px;
+    border-radius: 10px;
+    height: 50px;
+    background: #fff;
+    color: #717171;
 }
 
 .box1 {
@@ -141,6 +157,7 @@ p {
     position: relative;
     overflow: visible;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    font-family: "Calibri";
 }
 .lgbox {
     margin-top: 100px;
@@ -162,4 +179,79 @@ a:active {
 #h {
     color: white;
     opacity: 80%;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Define scrollbar track */
+::-webkit-scrollbar {
+    width: 5px; /* Width of the scrollbar */
+}
+
+/* Define scrollbar handle */
+::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar handle */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Define scrollbar track on Firefox */
+/* For Firefox, you need to use a pseudo-element to style the scrollbar */
+/* Note: This will only work in Firefox */
+* {
+    scrollbar-width: thin; /* Make scrollbar thin */
+}
+
+*::-moz-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar handle */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Define scrollbar handle */
+::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar handle */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Define scrollbar track on Firefox */
+/* For Firefox, you need to use a pseudo-element to style the scrollbar */
+/* Note: This will only work in Firefox */
+*::-moz-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar handle */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Define scrollbar track */
+::-webkit-scrollbar {
+    width: 5px; /* Width of the scrollbar */
+}
+
+/* Define scrollbar handle */
+::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar handle */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Define scrollbar track on Firefox */
+/* For Firefox, you need to use a pseudo-element to style the scrollbar */
+/* Note: This will only work in Firefox */
+*::-moz-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar handle */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Define scrollbar corner for WebKit-based browsers */
+::-webkit-scrollbar-corner {
+    background-color: transparent; /* Make scrollbar corner transparent */
+}
+
+/* Define scrollbar corner for Firefox */
+* {
+    scrollbar-corner {
+        background-color: transparent; /* Make scrollbar corner transparent */
+    }
 }
