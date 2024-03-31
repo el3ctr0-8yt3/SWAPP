@@ -77,16 +77,17 @@ const CreateOffer = () => {
           <Link to="/dashboard">
             <img src={back}></img>
           </Link>
-          <h1>Create Offer</h1>
+          <div id="co1">
+          <h1>Make an Offer !</h1>
           <div>
             {isAuthenticated ? (
               <>
                 <br />
                 <form>
-                  <span>
-                    <h2>I Want :</h2>
-                  </span>
+                  <div id="cd1">
+                    <h2 id="cdt">I Want</h2>
                   <select class="txtbox" id="coursedemandcode">
+                  <option value="" disabled selected hidden>Choose from Courses Catalog</option>
                     {course.map((course) => (
                       <option
                         key={course._id}
@@ -96,12 +97,13 @@ const CreateOffer = () => {
                       </option>
                     ))}
                   </select>
+                  </div>
                   <br />
                   <br />
-                  <span>
-                    <h2>I am Offering :</h2>
-                  </span>
+                  <div id="cd1">
+                    <h2 id="cdt">I am Offering</h2>
                   <select class="txtbox" id="courseoffercode">
+                  <option value="" disabled selected hidden>Choose from Courses Catalog</option>
                     {course.map((course) => (
                       <option
                         key={course._id}
@@ -111,15 +113,18 @@ const CreateOffer = () => {
                       </option>
                     ))}
                   </select>
+                  </div>
                   <br />
                   <br />
+                  <div id="cobtn">
                   <button
                     class="purplebtn"
                     type="submit"
                     onClick={createOfferHandler}
                   >
-                    Create Offer !
+                    Create Offer
                   </button>
+                  </div>
                 </form>
               </>
             ) : (
@@ -127,6 +132,7 @@ const CreateOffer = () => {
             )}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
