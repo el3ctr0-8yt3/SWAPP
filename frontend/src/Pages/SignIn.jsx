@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { apiUrl } from "../config";
 import { Link } from "react-router-dom";
-import back from '../Components/Vector.png'
+import back from '../Components/Vector.svg'
 import './app.css';
 import hand from '../Components/noto_waving-hand.png'
 const SignIn = () => {
@@ -48,8 +48,10 @@ const SignIn = () => {
         <div class="box1">
         <div class="box2">
         <Link to="/"><img src={back}></img></Link>
+            <div id="closer">
             <h1>Hi, Welcome Back ! <img src={hand}/></h1>
             
+            </div>
             <form>
             <div class='form1'>
                 <h2>Email</h2>

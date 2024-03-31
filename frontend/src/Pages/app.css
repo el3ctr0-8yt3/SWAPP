@@ -25,23 +25,49 @@ body {
     /* border: black 1px solid; */
 }
 h1 {
-    color: #000;
+    color: #ffffff;
     font-family:"Poppins", sans-serif;
     font-size: 2.5rem;
     font-weight: 600;
-    
+    /* border: black 1px solid; */
+    margin: 0px;
 }
 h2 {
-    color: #000;
+    color: #ffffff;
     font-family: "Poppins", sans-serif;
     font-size: 1.2rem;
     font-weight: 400;
+    opacity: 85%;
+    /* border: black 1px solid; */
+    margin: 0;
 }
+
 p {
     color: #000;
     font-family: "Poppins", sans-serif;
     font-size: 1rem;
     font-weight: 300;
+    
+}
+#up{
+    background-color: transparent;
+    border: #81358d 3px solid;
+}
+#closer{
+    margin-top: 1em;
+    margin-bottom: 2em;
+
+}
+#wide{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom:2rem ;
+    align-items: center;
+}
+#l{
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
 }
 .purplebtn {
     display: flex;
@@ -92,8 +118,12 @@ p {
     border: 1.5px solid lightgrey;
     transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     box-shadow: 0px 0px 20px -18px;
-    margin-bottom: 1rem;
-    appearance:textfield;
+    margin-bottom: 1rem;   
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .txtbox:hover {
     border: 1.5px solid rgb(97, 97, 97);
@@ -124,7 +154,7 @@ p {
     /* border: black 1px solid; */
     display: flex;
     justify-content:space-evenly;
-    margin-top: 5em;
+    margin-top: 7em;
     margin-left: 20em;
     margin-right: 20em;
    
@@ -148,23 +178,25 @@ p {
     width: fit-content;
     flex-direction: column;
     border-radius: 0.75rem;
-    padding: 2rem;
+    padding: 2.5rem;
     background: rgba(255, 255, 255, 0.33);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(9.8px);
     -webkit-backdrop-filter: blur(9.8px);
     border: 1px solid rgba(255, 255, 255, 0.14);
-    
+    /* border: black 2px solid; */
 }
 .box3 {
-    margin-top: 200px;
+    margin-top: 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    /* border: black 2px solid; */
 }
 .form1 {
+    
     display: flex;
     flex-direction: column;
 }
@@ -198,7 +230,6 @@ a {
 a:active {
     color: white;
 }
-#h {
-    color: white;
-    opacity: 80%;
+#h{
+    margin-top: 1.5rem;
 }
