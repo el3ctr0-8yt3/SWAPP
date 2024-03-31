@@ -1,7 +1,7 @@
 import { apiUrl } from "../config";
 import { Link } from "react-router-dom";
 import "./app.css";
-import back from "../Components/Vector.png";
+import back from "../Components/Vector.svg";
 const SignUp = () => {
     const sendOTP = async (e) => {
         e.preventDefault();
@@ -66,15 +66,16 @@ const SignUp = () => {
         }
     };
     return (
+        
         <div class="box1">
             <div class="box2">
                 <Link to="/">
                     <img src={back}></img>
                 </Link>
-
-                <h1>Create Account</h1>
-                <h2>Create an account and start swapping !</h2>
-
+                <div id="closer">
+                    <h1>Create Account</h1>
+                    <h2>Create your account & start Swapping !</h2>
+                </div>
                 <form>
                     <input
                         class="txtbox"
@@ -162,6 +163,7 @@ const SignUp = () => {
                 </form>
             </div>
         </div>
+        
     );
 };
 

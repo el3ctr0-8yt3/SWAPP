@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { apiUrl } from "../config";
 import { Link } from "react-router-dom";
-import back from "../Components/Vector.png";
+import back from "../Components/Vector.svg";
 import OffersList from "../Components/OffersList";
 
 const Dashboard = () => {
@@ -74,24 +74,23 @@ const Dashboard = () => {
                 <Link onClick={signout} to="/">
                     <img src={back}></img>
                 </Link>
-
-                <h1>Browse Offers</h1>
-
+                <div id="closer">
+                    <h1>Browse Offers</h1>
+                </div>
                 <div>
                     {isAuthenticated ? (
                         <>
-                            <h2>Welcome, {user.name} !</h2>
-                            <button class="greenbtn">
-                                <Link to="/createoffer">New Offer</Link>
-                            </button>
-                            &nbsp;&nbsp;
-                            <button class="greenbtn">
-                                <Link to="/deleteoffer">Delete Offer</Link>
-                            </button>
+                            <div id="wide">
+                                <h2 id="l">Welcome, {user.name} !</h2>
+
+                                <button class="greenbtn">
+                                    <Link to="/createoffer">New Offer</Link>
+                                </button>
+                            </div>
                             {/* <button onClick={signout}>Sign Out</button> */}
-                            <h2>Offers List</h2>
+                            <h2 id="l">Offers List</h2>
                             <OffersList offers={offers} />
-                            <h2>My Offers</h2>
+                            <h2 id="l">My Offers</h2>
                             <OffersList offers={myOffers} />
                         </>
                     ) : (

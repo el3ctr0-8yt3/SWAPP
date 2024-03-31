@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { apiUrl } from "../config";
 import { Link } from "react-router-dom";
-import back from "../Components/Vector.png";
+import back from "../Components/Vector.svg";
 
 const CreateOffer = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -70,64 +70,72 @@ const CreateOffer = () => {
     }
   }, [isAuthenticated]);
 
-    return (
-        <div class="box1">
-            <div class="box2">
-                <Link to="/dashboard">
-                    <img src={back}></img>
-                </Link>
-                <h1>Create Offer</h1>
-                <div>
-                    {isAuthenticated ? (
-                        <>
-                            <br />
-                            <form>
-                                <span>
-                                    <h2>Want Course:</h2>
-                                </span>
-                                <select class="txtbox" id="coursedemandcode">
-                                    {course.map((course) => (
-                                        <option
-                                            key={course._id}
-                                            value={course.code}
-                                        >
-                                            {course.code + " - " + course.name}
-                                        </option>
-                                    ))}
-                                </select>
-                                <br />
-                                <br />
-                                <span>
-                                    <h2>Offering Course:</h2>
-                                </span>
-                                <select class="txtbox" id="courseoffercode">
-                                    {course.map((course) => (
-                                        <option
-                                            key={course._id}
-                                            value={course.code}
-                                        >
-                                            {course.code + " - " + course.name}
-                                        </option>
-                                    ))}
-                                </select>
-                                <br />
-                                <br />
-                                <button
-                                    class="purplebtn"
-                                    type="submit"
-                                    onClick={createOfferHandler}
-                                >
-                                    Create Offer !
-                                </button>
-                            </form>
-                        </>
-                    ) : (
-                        <h2>Please Log-in !</h2>
-                    )}
-                </div>
-            </div>
+  return (
+    <div class="cont">
+      <div class="box1">
+        <div class="box2">
+          <Link to="/dashboard">
+            <img src={back}></img>
+          </Link>
+          <div id="co1">
+          <h1>Make an Offer !</h1>
+          <div>
+            {isAuthenticated ? (
+              <>
+                <br />
+                <form>
+                  <div id="cd1">
+                    <h2 id="cdt">I Want</h2>
+                  <select class="txtbox" id="coursedemandcode">
+                  <option value="" disabled selected hidden>Choose from Courses Catalog</option>
+                    {course.map((course) => (
+                      <option
+                        key={course._id}
+                        value={course.code}
+                      >
+                        {course.code + " - " + course.name}
+                      </option>
+                    ))}
+                  </select>
+                  </div>
+                  <br />
+                  <br />
+                  <div id="cd1">
+                    <h2 id="cdt">I am Offering</h2>
+                  <select class="txtbox" id="courseoffercode">
+                  <option value="" disabled selected hidden>Choose from Courses Catalog</option>
+                    {course.map((course) => (
+                      <option
+                        key={course._id}
+                        value={course.code}
+                      >
+                        {course.code + " - " + course.name}
+                      </option>
+                    ))}
+                  </select>
+                  </div>
+                  <br />
+                  <br />
+                  <div id="cobtn">
+                  <button
+                    class="purplebtn"
+                    type="submit"
+                    onClick={createOfferHandler}
+                  >
+                    Create Offer
+                  </button>
+                  </div>
+                </form>
+              </>
+            ) : (
+              <h2>Please Log-in !</h2>
+            )}
+          </div>
         </div>
-    );
+      </div>
+      </div>
+    </div>
+  );
 };
 
 export default CreateOffer;
