@@ -82,10 +82,16 @@ const Dashboard = () => {
                         <>
                             <div id="wide">
                                 <h2 id="l">Welcome, {user.name} !</h2>
-
-                                <button class="greenbtn">
-                                    <Link to="/createoffer">New Offer</Link>
-                                </button>
+                                <div id="button-box">
+                                    <button class="greenbtn">
+                                        <Link to="/createoffer">New Offer</Link>
+                                    </button>
+                                    <button class="greenbtn red">
+                                        <Link to="/deleteoffer">
+                                            Delete Offer
+                                        </Link>
+                                    </button>
+                                </div>
                             </div>
                             {/* <button onClick={signout}>Sign Out</button> */}
                             <h2 id="l">Offers List</h2>
