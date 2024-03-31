@@ -74,7 +74,7 @@ const Dashboard = () => {
                 <Link onClick={signout} to="/">
                     <img src={back}></img>
                 </Link>
-                <div id="closer">
+                <div class="closer cen">
                     <h1>Browse Offers</h1>
                 </div>
                 <div>

@@ -72,7 +72,7 @@ const SignUp = () => {
                 <Link to="/">
                     <img src={back}></img>
                 </Link>
-                <div id="closer">
+                <div class="closer">
                     <h1>Create Account</h1>
                     <h2>Create your account & start Swapping !</h2>
                 </div>

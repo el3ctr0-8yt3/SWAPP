@@ -65,14 +65,19 @@ p {
     border: #ffffff 3px solid;
     outline: none;
 }
-#closer {
+.closer {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    
+    align-items: left;
+    justify-content: left;
     margin-top: 1em;
     margin-bottom: 1em;
 }
-
+.cen{
+    align-items: center;
+    justify-content: center;
+}
 #wide {
     display: flex;
     flex-direction: column;

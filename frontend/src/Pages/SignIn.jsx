@@ -48,7 +48,7 @@ const SignIn = () => {
         <div class="box1">
         <div class="box2">
         <Link to="/"><img src={back}></img></Link>
-            <div id="closer">
+            <div class="closer">
             <h1>Hi, Welcome Back ! <img src={hand}/></h1>
             
             </div>
