@@ -66,6 +66,7 @@ const SignUp = () => {
         }
     };
     return (
+        
         <div class="box1">
             <div class="box2">
                 <Link to="/">

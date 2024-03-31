@@ -69,13 +69,11 @@ const Dashboard = () => {
     };
 
     return (
-        <div class="box1">
         
+        <div class="box1">
         <div class="box2">
         <Link onClick={signout} to="/"><img src={back}></img></Link>
-        
             <h1>Browse Offers</h1>
-            
             <div>
                 {isAuthenticated ? (
                     <>
@@ -95,6 +93,7 @@ const Dashboard = () => {
             </div>
         </div>
         </div>
+        
     );
 };
 

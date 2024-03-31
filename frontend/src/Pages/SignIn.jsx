@@ -44,6 +44,7 @@ const SignIn = () => {
     };
 
     return (
+        <div class="cont">
         <div class="box1">
         <div class="box2">
         <Link to="/"><img src={back}></img></Link>
@@ -63,7 +64,7 @@ const SignIn = () => {
             </form>
             
         </div>
-        </div>
+        </div></div>
     );
 };
 

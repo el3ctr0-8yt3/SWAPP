@@ -71,6 +71,7 @@ const CreateOffer = () => {
   }, [isAuthenticated]);
 
     return (
+      <div class="cont">
         <div class="box1">
             <div class="box2">
                 <Link to="/dashboard">
@@ -126,6 +127,7 @@ const CreateOffer = () => {
                     )}
                 </div>
             </div>
+        </div>
         </div>
     );
 };
