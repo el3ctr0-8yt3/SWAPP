@@ -2,24 +2,12 @@ import { useState, useEffect } from "react";
 import { apiUrl } from "../config";
 import { Link } from "react-router-dom";
 import back from "../Components/Vector.png";
-import OffersList from "../Components/OffersList";
 
-const Dashboard = () => {
+const DeleteOffer = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(true);
     const [user, setUser] = useState({});
-    const [offers, setOffers] = useState([]);
     const [myOffers, setMyOffers] = useState([]);
-
-    const getOffers = async () => {
-        const token = localStorage.getItem("token");
-        const response = await fetch(`${apiUrl}/offers`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        const data = await response.json();
-        setOffers(data);
-    };
+    const [selectedOffer, setSelectedOffer] = useState("");
 
     const getMyOffers = async () => {
         const token = localStorage.getItem("token");
@@ -29,6 +17,7 @@ const Dashboard = () => {
             },
         });
         const data = await response.json();
+        data.unshift({ _id: "Select Offer" });
         setMyOffers(data);
     };
 
@@ -44,13 +33,17 @@ const Dashboard = () => {
         setUser(data);
     };
 
+    const deleteOfferHandler = async (e) => {
+        e.preventDefault();
+        const token = localStorage.getItem("token");
+    };
+
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (!token) {
             setIsAuthenticated(false);
         } else {
             getUser();
-            getOffers();
             getMyOffers();
         }
     }, []);
@@ -59,40 +52,49 @@ const Dashboard = () => {
         if (!isAuthenticated) {
             setTimeout(() => {
                 window.location.href = "/";
-            }, 3000);
+            }, 100);
         }
     }, [isAuthenticated]);
-
-    const signout = () => {
-        localStorage.removeItem("token");
-        window.location.href = "/";
-    };
 
     return (
         <div class="box1">
             <div class="box2">
-                <Link onClick={signout} to="/">
+                <Link to="/dashboard">
                     <img src={back}></img>
                 </Link>
-
-                <h1>Browse Offers</h1>
-
+                <h1>Delete Offer</h1>
                 <div>
                     {isAuthenticated ? (
                         <>
-                            <h2>Welcome, {user.name} !</h2>
-                            <button class="greenbtn">
-                                <Link to="/createoffer">New Offer</Link>
-                            </button>
-                            &nbsp;&nbsp;
-                            <button class="greenbtn">
-                                <Link to="/deleteoffer">Delete Offer</Link>
-                            </button>
-                            {/* <button onClick={signout}>Sign Out</button> */}
-                            <h2>Offers List</h2>
-                            <OffersList offers={offers} />
-                            <h2>My Offers</h2>
-                            <OffersList offers={myOffers} />
+                            <br />
+                            <form>
+                                <span>
+                                    <h2>Select the Offer to Delete:</h2>
+                                </span>
+                                <select
+                                    class="txtbox"
+                                    id="offer"
+                                    name="offer"
+                                    onChange={(e) =>
+                                        setSelectedOffer(e.target.value)
+                                    }
+                                >
+                                    {myOffers.map((offer) => (
+                                        <option value={offer._id}>
+                                            {offer._id}
+                                        </option>
+                                    ))}
+                                </select>
+                                <br />
+                                <br />
+                                <button
+                                    class="purplebtn"
+                                    type="submit"
+                                    onClick={deleteOfferHandler}
+                                >
+                                    Delete Offer
+                                </button>
+                            </form>
                         </>
                     ) : (
                         <h2>Please Log-in !</h2>
@@ -103,4 +105,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default DeleteOffer;
