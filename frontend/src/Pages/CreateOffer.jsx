@@ -118,7 +118,7 @@ const CreateOffer = () => {
                   <br />
                   <div id="cobtn">
                   <button
-                    class="purplebtn"
+                    class="greenbtn big"
                     type="submit"
                     onClick={createOfferHandler}
                   >
