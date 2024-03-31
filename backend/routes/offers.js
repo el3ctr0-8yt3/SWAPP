@@ -54,7 +54,7 @@ router.get(`/myoffers`, checkAuth, async (req, res) => {
   }
   const formattedoffers = offerList.map((offer) => {
     return {
-      OfferId : offer._id,
+      OfferId: offer._id,
       CourseOfferName: offer.CourseOffer.name,
       CourseOfferCode: offer.CourseOffer.code,
       CourseOfferSection: offer.CourseOffer.section,
@@ -150,23 +150,36 @@ router.put("/:id", async (req, res) => {
   res.send(offer);
 });
 
-// router.delete("/:id", (req, res) => {
-//   Offer.findByIdAndDelete(req.params.id)
-//     .then((offer) => {
-//       if (offer) {
-//         return res
-//           .status(200)
-//           .json({ success: true, message: "the offer is deleted!" });
-//       } else {
-//         return res
-//           .status(404)
-//           .json({ success: false, message: "offer not found!" });
-//       }
-//     })
-//     .catch((err) => {
-//       return res.status(500).json({ success: false, error: err });
-//     });
-// });
+router.delete("/:id", checkAuth, async (req, res) => {
+  const offer = await Offer.findById(req.params.id);
+
+  if (!offer) {
+    return res
+      .status(404)
+      .json({ success: false, message: "offer not found! Sabar rakhlay" });
+  }
+
+  // console.log(String(offer.CourseOfferer));
+  if (String(offer.CourseOfferer) !== req.UserData.userId) {
+    return res.status(401).send("Unauthorized");
+  }
+
+  Offer.findByIdAndDelete(req.params.id)
+    .then((offer) => {
+      if (offer) {
+        return res
+          .status(200)
+          .json({ success: true, message: "the offer is deleted!" });
+      } else {
+        return res
+          .status(404)
+          .json({ success: false, message: "offer not found!" });
+      }
+    })
+    .catch((err) => {
+      return res.status(500).json({ success: false, error: err });
+    });
+});
 
 router.get(`/get/count`, async (req, res) => {
   const offerCount = await Offer.countDocuments((count) => count);
@@ -188,29 +201,5 @@ router.get(`/get/count`, async (req, res) => {
 //   }
 //   res.send(offerList);
 // });
-
-router.delete("/:id", checkAuth, (req, res) => {
-  const offer = Offer.findById(req.params.id);
-
-  if (offer.CourseOfferer !== req.UserData.userId) {
-    return res.status(401).send("Unauthorized");
-  }
-
-  Offer.findByIdAndDelete(req.params.id)
-    .then((offer) => {
-      if (offer) {
-        return res
-          .status(200)
-          .json({ success: true, message: "the offer is deleted!" });
-      } else {
-        return res
-          .status(404)
-          .json({ success: false, message: "offer not found!" });
-      }
-    })
-    .catch((err) => {
-      return res.status(500).json({ success: false, error: err });
-    });
-});
 
 module.exports = router;
