@@ -104,10 +104,10 @@ p {
     width: fit-content;
     min-width: 20rem;
     padding: 0.875rem 4.5625rem;
-
+    opacity: 90%;
     border-radius: 0.625rem;
     border: 1px solid rgba(255, 255, 255, 0.14);
-    background: #81358d;
+    background: #732b7c;
     color: #fff;
     font-family: "Poppins", sans-serif;
     font-size: 1.1rem;
@@ -120,13 +120,15 @@ p {
 
 .purplebtn:hover {
     scale: 98%;
+    opacity: 100%;
+
 }
 
 .greenbtn {
     width: fit-content;
     min-width: 40px;
     padding: 0.475rem 2.5625rem;
-    border-radius: 0.325rem;
+    border-radius: 0.625rem;
     border: 0.658px solid #8e8383;
     background: #18a800;
     color: #fff;
