@@ -1,6 +1,7 @@
 const { Offer } = require("../model/offers");
 const { Course } = require("../model/course");
 const { User } = require("../model/user");
+const { Match } = require("../model/match");
 
 const express = require("express");
 const router = express.Router();
@@ -105,6 +106,30 @@ router.post(`/`, checkAuth, async (req, res) => {
   offer = await offer.save();
 
   if (!offer) return res.status(500).send("the offer cannot be created!");
+
+  // let newoffer = findOne({ CourseDemand: courseoffer._id  })
+  let newoffer = await Offer.findOne({
+    CourseDemand: offer.CourseOffer,
+    CourseOffer: offer.CourseDemand,
+  });
+
+  if (!newoffer) {
+    console.log("No match found");
+  }
+
+  if (newoffer) {
+    console.log("Match found");
+    let match = new Match({
+      OfferId1: newoffer._id,
+      OfferId2: offer._id,
+      Offer1want: newoffer.CourseDemand._id,
+      Offer2want: offer.CourseDemand._id,
+    });
+
+    match = await match.save();
+
+    if (!match) return res.status(500).send("the match cannot be saved");
+  }
 
   res.send({
     CourseOfferer: user.name,

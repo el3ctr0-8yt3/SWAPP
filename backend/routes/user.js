@@ -98,12 +98,12 @@ router.post(`/`, checkAuth, async (req, res) => {
 
 router.post(`/register`, async (req, res) => {
   // raise error if email doesnot end with '@st.habib.edu.pk'
-  if (!req.body.email.endsWith("@st.habib.edu.pk")) {
-    return res.status(400).json({
-      success: false,
-      message: "The email is not valid. Please enter a valid Habootar email.",
-    });
-  }
+  // if (!req.body.email.endsWith("@st.habib.edu.pk")) {
+  //   return res.status(400).json({
+  //     success: false,
+  //     message: "The email is not valid. Please enter a valid Habootar email.",
+  //   });
+  // }
 
   // check if email exists already:
   let exuser = await User.findOne({ email: req.body.email });
@@ -143,7 +143,6 @@ router.post(`/register`, async (req, res) => {
 
   res.send(user);
   sendConfirmation(user.email);
-
 });
 
 // delete also needs to delete the offers associated with the user
@@ -164,7 +163,5 @@ router.delete("/:id", (req, res) => {
       return res.status(400).json({ success: false, error: err });
     });
 });
-
-
 
 module.exports = router;

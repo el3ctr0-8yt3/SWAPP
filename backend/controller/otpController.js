@@ -10,15 +10,15 @@ exports.sendOTP = async (req, res) => {
     // Check if user is already present
     const checkUserPresent = await User.findOne({ email });
     // If user found with provided email
-    if (!req.body.email.endsWith("@st.habib.edu.pk")) {
-      console.log(
-        "The email is not valid. Please enter a valid Habootar email.",
-      );
-      return res.status(400).json({
-        success: false,
-        message: "The email is not valid. Please enter a valid Habootar email.",
-      });
-    }
+    // if (!req.body.email.endsWith("@st.habib.edu.pk")) {
+    //   console.log(
+    //     "The email is not valid. Please enter a valid Habootar email.",
+    //   );
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: "The email is not valid. Please enter a valid Habootar email.",
+    //   });
+    // }
     if (checkUserPresent) {
       console.log("User is already registered");
       return res.status(401).json({

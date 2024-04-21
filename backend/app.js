@@ -29,14 +29,16 @@ const userRouter = require("./routes/user");
 app.use(`${api}/user`, userRouter);
 const courseRouter = require("./routes/course");
 app.use(`${api}/course`, courseRouter);
-
 const otpRouter = require("./routes/otp");
 app.use(`${api}/otp`, otpRouter);
+const matchRouter = require("./routes/match");
+app.use(`${api}/match`, matchRouter);
 
 const Offer = require("./model/offers");
 const Category = require("./model/category");
 const User = require("./model/user");
 const Course = require("./model/course");
+const Match = require("./model/match");
 
 mongoose
   .connect(process.env.CONNECTION_STRING, {
