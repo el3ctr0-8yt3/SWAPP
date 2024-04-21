@@ -43,6 +43,8 @@ router.get(`/`, checkAuth, async (req, res) => {
       Offer2Name: match.OfferId2.CourseOfferer.name,
       Offer1Email: match.OfferId1.CourseOfferer.email,
       Offer2Email: match.OfferId2.CourseOfferer.email,
+      Offer1Phone: match.OfferId1.CourseOfferer.phone,
+      Offer2Phone: match.OfferId2.CourseOfferer.phone,
       Offer1CourseOffer: match.OfferId1.CourseOffer.name,
       Offer2CourseOffer: match.OfferId2.CourseOffer.name,
       Offer1CourseDemand: match.OfferId1.CourseDemand.name,
