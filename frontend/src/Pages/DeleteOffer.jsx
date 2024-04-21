@@ -78,7 +78,7 @@ const DeleteOffer = () => {
                         <img src={back}></img>
                     </Link>
                     <div id="co1">
-                        <h1>Delete Existing Offer!</h1>
+                        <h1>Delete Existing Offers !</h1>
                         <div>
                             {isAuthenticated ? (
                                 <>
@@ -165,7 +165,7 @@ const DeleteOffer = () => {
                                         )}
                                         <div id="cobtn">
                                             <button
-                                                class="purplebtn"
+                                                class="greenbtn red big"
                                                 type="submit"
                                                 onClick={deleteOfferHandler}
                                             >
