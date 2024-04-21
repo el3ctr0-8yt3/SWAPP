@@ -5,6 +5,14 @@ import back from "../Components/Vector.svg";
 const SignUp = () => {
     const sendOTP = async (e) => {
         e.preventDefault();
+
+        // Validate email using regex
+        const emailRegex = /^[a-zA-Z0-9._-]+@st.habib.edu.pk$/;
+        if (!emailRegex.test(document.getElementById("email").value)) {
+            alert("Invalid Email. Please use your Habib Student Email");
+            return;
+        }
+
         const email = document.getElementById("email").value;
         const data = {
             email,
@@ -18,14 +26,23 @@ const SignUp = () => {
                 body: JSON.stringify(data),
             });
             if (response.ok) {
-                const jsonResponse = await response.json();
-                console.log("OTP sent", jsonResponse);
+                alert("OTP sent to your email");
             } else {
                 console.error("OTP failed");
             }
         } catch (error) {
             console.error("OTP failed", error);
         }
+    };
+
+    const sendMobileOTP = async (e) => {
+        e.preventDefault();
+        if (document.getElementById("phone").value.length !== 11) {
+            alert("Invalid Phone Number");
+            return;
+        }
+        alert("Mobile OTP sent");
+        alert("Mobile OTP: 1234");
     };
 
     const buttonClick = async (e) => {
@@ -66,19 +83,18 @@ const SignUp = () => {
         }
     };
     return (
-        
-        <div class="box1">
-            <div class="box2">
+        <div className="box1">
+            <div className="box2">
                 <Link to="/">
                     <img src={back}></img>
                 </Link>
-                <div class="closer">
+                <div className="closer">
                     <h1>Create Account</h1>
                     <h2>Create your account & start Swapping !</h2>
                 </div>
                 <form>
                     <input
-                        class="txtbox"
+                        className="txtbox"
                         type="text"
                         placeholder="Enter Your Full Name"
                         id="name"
@@ -86,7 +102,7 @@ const SignUp = () => {
                     />
                     <br />
                     <input
-                        class="txtbox"
+                        className="txtbox"
                         type="email"
                         placeholder="Enter Your Habib Email"
                         id="email"
@@ -94,26 +110,7 @@ const SignUp = () => {
                     />
                     <br />
                     <input
-                        class="txtbox otp"
-                        type="number"
-                        placeholder="Enter OTP sent to your email"
-                        id="otp"
-                        required={true}
-                    />
-                    <button class="otp-btn" onClick={sendOTP}>
-                        Send OTP
-                    </button>
-                    <br />
-                    <input
-                        class="txtbox"
-                        type="password"
-                        placeholder="Create a Secure Password"
-                        id="password"
-                        required={true}
-                    />
-                    <br />
-                    <input
-                        class="txtbox"
+                        className="txtbox"
                         type="number"
                         placeholder="Enter Your Phone Number"
                         id="phone"
@@ -121,14 +118,44 @@ const SignUp = () => {
                     />
                     <br />
                     <input
-                        class="txtbox"
+                        className="txtbox otp"
+                        type="number"
+                        placeholder="Enter OTP sent to your email"
+                        id="otp"
+                        required={true}
+                    />
+                    <button className="otp-btn" onClick={sendOTP}>
+                        Send OTP
+                    </button>
+                    <br />
+                    <input
+                        className="txtbox otp"
+                        type="number"
+                        placeholder="Enter OTP sent to your phone num"
+                        id="otp-mobile"
+                        required={true}
+                    />
+                    <button className="otp-btn" onClick={sendMobileOTP}>
+                        Send OTP
+                    </button>
+                    <br />
+                    <input
+                        className="txtbox"
+                        type="password"
+                        placeholder="Create a Secure Password"
+                        id="password"
+                        required={true}
+                    />
+                    <br />
+                    <input
+                        className="txtbox"
                         type="number"
                         placeholder="Enter Your Batch Year (e.g. 2020)"
                         id="batch"
                         required={true}
                     />
                     <br />
-                    <select id="Major" class="txtbox">
+                    <select id="Major" className="txtbox">
                         <option value="Computer Science">
                             Computer Science
                         </option>
@@ -150,7 +177,7 @@ const SignUp = () => {
                     </select>
                     <br />
                     <button
-                        class="purplebtn"
+                        className="purplebtn"
                         type="submit"
                         onClick={buttonClick}
                     >
@@ -163,7 +190,6 @@ const SignUp = () => {
                 </form>
             </div>
         </div>
-        
     );
 };
 
