@@ -10,9 +10,13 @@ const checkAuth = require("../middleware/jwt").checkAuth;
 router.get(`/`, checkAuth, async (req, res) => {
   const userId = req.UserData.userId; // Assuming userId is available in req.UserData
 
-  let offer = await Offer.findOne({ CourseOfferer: userId });
+  const offerlist = await Offer.find({ CourseOfferer: userId });
+
+  // if (!offerlist) {
+  //   res.status(500).json({ success: false });
+  // }
   const matchList = await Match.find({
-    $or: [{ OfferId1: offer._id }, { OfferId2: offer._id }],
+    $or: [{ OfferId1: { $in: offerlist } }, { OfferId2: { $in: offerlist } }],
   })
     .populate({
       path: "OfferId1",
@@ -24,33 +28,52 @@ router.get(`/`, checkAuth, async (req, res) => {
     })
     .populate({ path: "OfferId2", populate: { path: "CourseOfferer" } });
 
-  // let matchList = await Match.find();
+  // // let matchList = await Match.find();
 
-  if (!matchList) {
-    res.status(500).json({ success: false });
-  }
-  // res.send({
-  //   want: offer.CourseDemand,
-  //   have: offer.CourseOffer,
+  // if (!matchList) {
+  //   res.status(500).json({ success: false });
+  // }
+  // // res.send({
+  // //   want: offer.CourseDemand,
+  // //   have: offer.CourseOffer,
 
-  // })
-
+  // // })
   let formattedMatchList = matchList.map((match) => {
-    return {
-      // OfferId1: match.OfferId1._id,
-      // OfferId2: match.OfferId2._id,
-      Offer1Name: match.OfferId1.CourseOfferer.name,
-      Offer2Name: match.OfferId2.CourseOfferer.name,
-      Offer1Email: match.OfferId1.CourseOfferer.email,
-      Offer2Email: match.OfferId2.CourseOfferer.email,
-      Offer1Phone: match.OfferId1.CourseOfferer.phone,
-      Offer2Phone: match.OfferId2.CourseOfferer.phone,
-      Offer1CourseOffer: match.OfferId1.CourseOffer.name,
-      Offer2CourseOffer: match.OfferId2.CourseOffer.name,
-      Offer1CourseDemand: match.OfferId1.CourseDemand.name,
-      Offer2CourseDemand: match.OfferId2.CourseDemand.name,
-    };
+    if (match.OfferId1.CourseOfferer._id == userId) {
+      return {
+        Name: match.OfferId2.CourseOfferer.name,
+        Email: match.OfferId2.CourseOfferer.email,
+        Phone: match.OfferId2.CourseOfferer.phone,
+        OfferName: match.OfferId1.CourseDemand.name,
+        DemandName: match.OfferId1.CourseOffer  .name,
+      };
+    } else {
+      return {
+        Name: match.OfferId1.CourseOfferer.name,
+        Email: match.OfferId1.CourseOfferer.email,
+        Phone: match.OfferId1.CourseOfferer.phone,
+        OfferName: match.OfferId1.CourseOffer.name,
+        DemandName: match.OfferId1.CourseDemand.name,
+      };
+    }
   });
+
+  // let formattedMatchList = matchList.map((match) => {
+  //   return {
+  //     // OfferId1: match.OfferId1._id,
+  //     // OfferId2: match.OfferId2._id,
+  //     Offer1Name: match.OfferId1.CourseOfferer.name,
+  //     Offer2Name: match.OfferId2.CourseOfferer.name,
+  //     Offer1Email: match.OfferId1.CourseOfferer.email,
+  //     Offer2Email: match.OfferId2.CourseOfferer.email,
+  //     Offer1Phone: match.OfferId1.CourseOfferer.phone,
+  //     Offer2Phone: match.OfferId2.CourseOfferer.phone,
+  //     Offer1CourseOffer: match.OfferId1.CourseOffer.name,
+  //     Offer2CourseOffer: match.OfferId2.CourseOffer.name,
+  //     Offer1CourseDemand: match.OfferId1.CourseDemand.name,
+  //     Offer2CourseDemand: match.OfferId2.CourseDemand.name,
+  //   };
+  // });
 
   res.send(formattedMatchList);
 });

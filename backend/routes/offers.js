@@ -95,6 +95,32 @@ router.post(`/`, checkAuth, async (req, res) => {
     code: req.body.Coursedemandcode,
   });
   if (!coursedemand) return res.status(400).send("Invalid demand Course");
+  if (req.body.Courseoffercode === req.body.Coursedemandcode) {
+    return res.status(400).send("Offer and Demand cannot be the same");
+  }
+
+  // const existingUserOffers = await Offer.findOne({
+  //   CourseOfferer: user._id,
+  //   $or: [{ CourseOffer: coursedemand._id }, { CourseDemand: courseoffer._id }],
+  // });
+
+  // if (existingUserOffers) {
+  //   return res
+  //     .status(400)
+  //     .send(
+  //       "You cant offer the course you want. Neither can you ask for the course you have! Have fucking common sense",
+  //     );
+  // }
+
+  // const duplicateoffer = await Offer.findOne({
+  //   CourseOfferer: user._id,
+  //   CourseOffer: courseoffer._id,
+  //   CourseDemand: courseoffer._id,
+  // });
+
+  // if (duplicateoffer) {
+  //   return res.status(400).send("Why are you so fucking desperate");
+  // }
 
   let offer = new Offer({
     CourseOfferer: user._id,
