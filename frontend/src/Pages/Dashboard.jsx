@@ -91,6 +91,11 @@ const Dashboard = () => {
                                             Delete Offer
                                         </Link>
                                     </button>
+                                    <button class="greenbtn blue">
+                                        <Link to="/matchedoffers">
+                                            Matched Offers
+                                        </Link>
+                                    </button>
                                 </div>
                             </div>
                             {/* <button onClick={signout}>Sign Out</button> */}

@@ -68,13 +68,13 @@ p {
 .closer {
     display: flex;
     flex-direction: column;
-    
+
     align-items: left;
     justify-content: left;
     margin-top: 1em;
     margin-bottom: 1em;
 }
-.cen{
+.cen {
     align-items: center;
     justify-content: center;
 }
@@ -96,8 +96,7 @@ p {
 #l {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
-    font-weight:400;
-    
+    font-weight: 400;
 }
 
 .purplebtn {
@@ -121,7 +120,6 @@ p {
 .purplebtn:hover {
     scale: 98%;
     opacity: 100%;
-
 }
 
 .greenbtn {
@@ -142,6 +140,10 @@ p {
     background: #d91e18 !important;
 }
 
+.blue {
+    background: #0a84ff !important;
+}
+
 .greenbtn:hover {
     opacity: 95%;
 }
@@ -150,7 +152,7 @@ p {
     scale: 95%;
     opacity: 100%;
 }
-.big{
+.big {
     width: fit-content;
     min-width: 20rem;
     padding: 0.875rem 4.5625rem;
