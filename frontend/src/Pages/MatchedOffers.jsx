@@ -54,7 +54,7 @@ const MatchedOffers = () => {
     return (
         <div class="box1">
             <div class="box2">
-                <Link to="/">
+                <Link to="/dashboard">
                     <img src={back}></img>
                 </Link>
                 <div class="closer cen">

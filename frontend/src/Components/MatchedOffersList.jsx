@@ -17,25 +17,25 @@ const MatchedOffersList = ({ offers }) => {
         >
             {offers.map((offer) => (
                 <div className="offer">
-                    <b>Want:</b> {offer.Offer1CourseOffer}
+                    <b>Want:</b> {offer.OfferName}
                     <br />
                     <br />
-                    <b>Have:</b> {offer.Offer1CourseDemand}
+                    <b>Have:</b> {offer.DemandName}
                     <br />
                     <br />
-                    <b>Offer Matched With: </b> {offer.Offer1Name}
+                    <b>Offer Matched With: </b> {offer.Name}
                     <br />
                     <br />
                     <b>Contact Details:</b> <br />
                     <br />
-                    <a href={`https://wa.me/${offer.Offer1Phone}`}>
+                    <a href={`https://wa.me/${offer.Phone}`}>
                         <img
                             src={whatsapp}
                             alt="whatsapp"
                             style={{ width: "50px" }}
                         />
                     </a>
-                    <a href={`mailto:${offer.Offer1Email}`}>
+                    <a href={`mailto:${offer.Email}`}>
                         <img
                             src={email}
                             alt="email"
