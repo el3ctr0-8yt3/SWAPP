@@ -83,22 +83,23 @@ const Dashboard = () => {
                             <div id="wide">
                                 <h2 id="l">Welcome, {user.name} !</h2>
                                 <div id="button-box">
-                                    <button class="greenbtn">
-                                        <Link to="/createoffer">New Offer</Link>
-                                    </button>
-                                    <button class="greenbtn red">
-                                        <Link to="/deleteoffer">
+                                    <Link to="/createoffer">
+                                        <button class="greenbtn">
+                                            New Offer
+                                        </button>
+                                    </Link>
+                                    <Link to="/deleteoffer">
+                                        <button class="greenbtn red">
                                             Delete Offer
-                                        </Link>
-                                    </button>
-                                    <button class="greenbtn blue">
-                                        <Link to="/matchedoffers">
+                                        </button>
+                                    </Link>
+                                    <Link to="/matchedoffers">
+                                        <button class="greenbtn blue">
                                             Matched Offers
-                                        </Link>
-                                    </button>
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
-                            {/* <button onClick={signout}>Sign Out</button> */}
                             <h2 id="l">Offers List</h2>
                             <OffersList offers={offers} />
                             <h2 id="l">My Offers</h2>

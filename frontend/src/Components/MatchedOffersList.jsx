@@ -1,7 +1,7 @@
 import React from "react";
 import "../Pages/app.css";
-import whatsapp from "./logo.png";
-import email from "./gmail.png";
+import whatsapp from "./whatsapp.png";
+import email from "./email.png";
 
 const MatchedOffersList = ({ offers }) => {
     if (offers.length === 0) {
@@ -26,20 +26,28 @@ const MatchedOffersList = ({ offers }) => {
                     <b>Offer Matched With: </b> {offer.Name}
                     <br />
                     <br />
-                    <b>Contact Details:</b> <br />
+                    <b>Reach Out to Them:</b> <br />
                     <br />
                     <a href={`https://wa.me/${offer.Phone}`}>
                         <img
                             src={whatsapp}
                             alt="whatsapp"
-                            style={{ width: "50px" }}
+                            style={{
+                                width: "40px",
+                                borderRadius: "20%",
+                                margin: "-5px 5px 5px 15px",
+                            }}
                         />
                     </a>
                     <a href={`mailto:${offer.Email}`}>
                         <img
                             src={email}
                             alt="email"
-                            style={{ width: "50px" }}
+                            style={{
+                                width: "40px",
+                                borderRadius: "20%",
+                                margin: "-5px 5px 5px 5px",
+                            }}
                         />
                     </a>
                 </div>

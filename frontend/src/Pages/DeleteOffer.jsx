@@ -46,6 +46,7 @@ const DeleteOffer = () => {
         if (response.ok) {
             alert("Offer Deleted Successfully!");
             getMyOffers();
+            setSelectedOffer("");
         } else {
             alert("Failed to Delete Offer!");
             console.log(response);
