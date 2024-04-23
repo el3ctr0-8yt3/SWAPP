@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { apiUrl } from "../config";
 import { Link } from "react-router-dom";
-import back from '../Components/Vector.svg'
-import './app.css';
-import hand from '../Components/noto_waving-hand.png'
+import back from "../Components/Vector.svg";
+import "./app.css";
+import hand from "../Components/noto_waving-hand.png";
 const SignIn = () => {
     const signInUser = async (email, password) => {
         const data = { email, password };
@@ -45,28 +45,48 @@ const SignIn = () => {
 
     return (
         <div class="cont">
-        <div class="box1">
-        <div class="box2">
-        <Link to="/"><img src={back}></img></Link>
-            <div class="closer">
-            <h1>Hi, Welcome Back ! <img src={hand}/></h1>
-            
-            </div>
-            <form>
-            <div class='form1'>
-                <h2>Email</h2>
-                <input class="txtbox" type="email" placeholder="Type Email" />
-                <h2>Password</h2>
-                <input class="txtbox" type="password" placeholder="Type Password" />
-                <button class="purplebtn" type="submit" onClick={handleSignIn}>
-                    LOGIN
-                </button>
-                <p>Don't have an account? <Link to="/signup">Sign-up</Link>  </p>
+            <div class="box1">
+                <div class="box2">
+                    <Link to="/">
+                        <img src={back}></img>
+                    </Link>
+                    <div class="closer">
+                        <h1>
+                            Hi, Welcome Back ! <img src={hand} />
+                        </h1>
+                    </div>
+                    <form>
+                        <div class="form1">
+                            <h2>Email</h2>
+                            <input
+                                class="txtbox"
+                                type="email"
+                                placeholder="Type Email"
+                            />
+                            <h2>Password</h2>
+                            <input
+                                class="txtbox"
+                                type="password"
+                                placeholder="Type Password"
+                            />
+                            <button
+                                class="purplebtn"
+                                type="submit"
+                                onClick={handleSignIn}
+                            >
+                                LOGIN
+                            </button>
+                            <p>
+                                Don't have an account? &nbsp;
+                                <Link to="/signup">Sign Up!</Link> <br />
+                                Forgot Password? &nbsp;
+                                <Link to="/resetpassword">Reset It!</Link>
+                            </p>
+                        </div>
+                    </form>
                 </div>
-            </form>
-            
+            </div>
         </div>
-        </div></div>
     );
 };
 

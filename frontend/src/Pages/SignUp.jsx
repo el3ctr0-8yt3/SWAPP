@@ -63,6 +63,18 @@ const SignUp = () => {
             Major,
             otp,
         };
+        if (
+            !data.name ||
+            !data.email ||
+            !data.password ||
+            !data.phone ||
+            !data.batch ||
+            !data.Major ||
+            !data.otp
+        ) {
+            alert("Please fill all fields");
+            return;
+        }
         try {
             const response = await fetch(apiUrl + "/user/register", {
                 method: "POST",
